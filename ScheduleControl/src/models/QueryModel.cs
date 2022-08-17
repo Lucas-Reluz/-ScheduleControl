@@ -23,6 +23,9 @@ namespace ScheduleControl.src.models
         [Required, StringLength(50)]
         public string Hours { get; set; }
 
+        [Required, StringLength(50)]
+        public string Data { get; set; }
+
         [ForeignKey("fk_doctor")]
         public DoctorModel Doctor { get; set; }
 
