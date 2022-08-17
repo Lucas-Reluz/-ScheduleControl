@@ -15,7 +15,7 @@ namespace ScheduleControl.src.repositories
     {
         Task NewPatientAsync(NewPatientDTO patient);
         Task DeletePatientAsync(int id);
-
+        Task<PatientModel> GetPatientByIdAsync(int id);
         Task<List<PatientModel>> GetAllPatientsAsync();
         Task<PatientModel>GetPatientByEmailAsync(string email);
 

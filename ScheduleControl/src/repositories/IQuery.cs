@@ -15,7 +15,7 @@ namespace ScheduleControl.src.repositories
     {
         Task NewQueryAsync(NewQueryDTO query);
         Task UpdateQueryAsync(UpdateQueryDTO query);
-
+        Task<QueryModel> GetQueryById(int id);
         Task DeleteQueryAsync(int id);
 
         Task<List<QueryModel>> GetAllQueriesAsync();
