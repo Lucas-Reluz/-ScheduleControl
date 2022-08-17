@@ -20,8 +20,8 @@ namespace ScheduleControl.src.models
         [StringLength(200)]
         public string Reason{ get; set; }
 
-        [Required]
-        public int Hours { get; set; }
+        [Required, StringLength(50)]
+        public string Hours { get; set; }
 
         [ForeignKey("fk_doctor")]
         public DoctorModel Doctor { get; set; }
