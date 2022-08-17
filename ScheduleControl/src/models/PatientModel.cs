@@ -23,5 +23,8 @@ namespace ScheduleControl.src.models
         [Required]
         [StringLength(100)]
         public string Email { get; set; }
+
+        [JsonIgnore]
+        public List<QueryModel> MyQueries { get; set; }
     }
 }

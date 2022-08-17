@@ -1,5 +1,7 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace ScheduleControl.src.models
 {
@@ -23,5 +25,8 @@ namespace ScheduleControl.src.models
         [Required]
         [StringLength(150)]
         public string OccupationArea { get; set; }
+
+        [JsonIgnore]
+        public List<QueryModel> MyQueries { get; set; }
     }
 }
