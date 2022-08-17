@@ -3,7 +3,7 @@
 namespace ScheduleControl.src.dtos
 {
     /// <summary>
-    /// <para>Summary: Mirror Mirror class responsible for creating new patients</para>
+    /// <para>Summary: Mirror class responsible for creating new patients</para>
     /// <para>Created by: Lucas Reluz</para>
     /// <para>Version: 1.0</para>
     /// <para>Data: 17/08/2022</para>

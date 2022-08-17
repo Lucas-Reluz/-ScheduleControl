@@ -29,29 +29,28 @@ namespace ScheduleControl.src.dtos
             Doctor = doctor;
             Patient = patient;
         }
+    }
+    /// <summary>
+    /// <para>Summary: Mirror class responsible for updating queries</para>
+    /// <para>Created by: Lucas Reluz</para>
+    /// <para>Version: 1.0</para>
+    /// <para>Data: 17/08/2022</para>
+    /// </summary>
+    public class UpdateQueryDTO
+    {
+        [Required]
+        public int Id { get; set; }
 
-        /// <summary>
-        /// <para>Summary: Mirror class responsible for updating queries</para>
-        /// <para>Created by: Lucas Reluz</para>
-        /// <para>Version: 1.0</para>
-        /// <para>Data: 17/08/2022</para>
-        /// </summary>
-        public class UpdateQueryDTO
+        [StringLength(50)]
+        public string Hours { get; set; }
+
+        public string Doctor { get; set; }
+
+        public UpdateQueryDTO(int id, string hours, string doctor)
         {
-            [Required]
-            public int Id { get; set; }
-
-            [StringLength(50)]
-            public string Hours { get; set; }
-
-            public string Doctor { get; set; }
-
-            public UpdateQueryDTO(int id, string hours, string doctor)
-            {
-                Id = id;
-                Hours = hours;
-                Doctor = doctor;
-            }
+            Id = id;
+            Hours = hours;
+            Doctor = doctor;
         }
     }
 }
