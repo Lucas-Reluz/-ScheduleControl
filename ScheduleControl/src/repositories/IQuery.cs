@@ -16,11 +16,10 @@ namespace ScheduleControl.src.repositories
         Task NewQueryAsync(NewQueryDTO query);
         Task UpdateQueryAsync(UpdateQueryDTO query);
         Task<QueryModel> GetQueryById(int id);
+
+        Task<QueryModel> GetQueryByHours(string hours);
         Task DeleteQueryAsync(int id);
-
         Task<List<QueryModel>> GetAllQueriesAsync();
-
-        Task<List<QueryModel>> SearchQueryAsync(string reason, string nameDoctor);
 
     }
 }

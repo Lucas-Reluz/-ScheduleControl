@@ -18,6 +18,6 @@ namespace ScheduleControl.src.repositories
         Task DeleteDoctorAsync(int id);
         Task<List<DoctorModel>> GetAllDoctors();
         Task<DoctorModel> GetDoctorByIdAsync(int id);
-        Task<DoctorModel> GetDoctorByOccupationAreaAsync(string occupationArea);
+        Task<List<DoctorModel>> GetDoctorByOccupationAreaAsync(string occupationArea);
     }
 }
