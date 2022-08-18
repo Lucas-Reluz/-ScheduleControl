@@ -57,7 +57,7 @@ namespace ScheduleControl
             // Configuration Swagger
             services.AddSwaggerGen(s =>
             {
-                s.SwaggerDoc("v1", new OpenApiInfo { Title = "Controle de Medicamentos", Version = "v1" });
+                s.SwaggerDoc("v1", new OpenApiInfo { Title = "Schedule Control", Version = "v1" });
 
                 var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
                 var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);

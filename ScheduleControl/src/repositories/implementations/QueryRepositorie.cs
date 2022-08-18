@@ -45,12 +45,21 @@ namespace ScheduleControl.src.repositories.implementations
                 .Include(q => q.Patient)
                 .ToListAsync();
         }
-
+        /// <summary>
+        /// <para>Resumo: Asynchronous method to get a query for hours</para>
+        /// </summary>
+        /// <param name="hours">Hours of Query</param>
+        /// <return>QueryModel</return>
         public async Task<QueryModel> GetQueryByHours(string hours)
         {
             return await _context.Queries.FirstOrDefaultAsync(q => q.Hours == hours);
         }
 
+        /// <summary>
+        /// <para>Resumo: Asynchronous method to get a query by Id </para>
+        /// </summary>
+        /// <param name="id">Id do usuario</param>
+        /// <return>QueryModel</return>
         public async Task<QueryModel> GetQueryById(int id)
         {
             return await _context.Queries
@@ -59,11 +68,12 @@ namespace ScheduleControl.src.repositories.implementations
                 .FirstOrDefaultAsync(q => q.Id == id);
         }
 
+        /// <summary>
+        /// <para>Resumo: Asynchronous method to create new Query</para>
+        /// </summary>
+        /// <param name="query">NewQueryDTO</param>
         public async Task NewQueryAsync(NewQueryDTO query)
         {
-            if (!ExistingQueryOfPatient(query.Patient.Name, query.Hours)) throw new Exception("This patient is already registered in this hour");
-            if (!ExistingQueryOfDoctor(query.Doctor.Name, query.Hours)) throw new Exception("This doctor is already registered in this hour");
-
             await _context.Queries.AddAsync(new QueryModel
             {
                   Reason = query.Reason,
@@ -73,23 +83,11 @@ namespace ScheduleControl.src.repositories.implementations
                   Patient = _context.Patients.FirstOrDefault(p => p.Name == query.Patient.Name),
             });
             _context.SaveChanges();
-
-            bool ExistingQueryOfPatient(string name, string hours)
-            {
-                var response = _context.Queries
-                     .Include(q => q.Patient.Name == name)
-                     .Include(q => q.Hours == hours);
-                return (response != null);
-            }
-            bool ExistingQueryOfDoctor(string name, string hours)
-            {
-                var response = _context.Queries
-                    .Include(q => q.Doctor.Name == name)
-                    .Include(q => q.Hours == hours);
-                return response != null;
-            }
         }
-
+        /// <summary>
+        /// <para>Resumo: Asynchronous method to update a query</para>
+        /// </summary>
+        /// <param name="query">UpdateQueryDTO</param>
         public async Task UpdateQueryAsync(UpdateQueryDTO query)
         {
             var _query = await GetQueryById(query.Id);

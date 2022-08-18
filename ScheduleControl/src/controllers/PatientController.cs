@@ -1,5 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using ScheduleControl.src.dtos;
+using ScheduleControl.src.models;
 using ScheduleControl.src.repositories;
 using System;
 using System.Threading.Tasks;
@@ -20,6 +22,25 @@ namespace ScheduleControl.src.controllers
             _repository = patient;
         }
 
+        /// <summary>
+        /// Create New Patient
+        /// </summary>
+        /// <param name="patient">NewPatientDTO</param>
+        /// <returns>ActionResult</returns>
+        /// <remarks>
+        /// Requisition example:
+        ///
+        ///     POST /api/Patient
+        ///     {
+        ///        "name": "Marcelo",
+        ///        "email": "marcelo@email.com"
+        ///     }
+        ///
+        /// </remarks>
+        /// <response code="201"> Return created Patient</response>
+        /// <response code="400"> request error </response>
+        [ProducesResponseType(StatusCodes.Status201Created, Type = typeof(PatientModel))]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [HttpPost("Register")]
         public async Task<ActionResult> NewPatientAsync([FromBody] NewPatientDTO patient)
         {
@@ -34,6 +55,15 @@ namespace ScheduleControl.src.controllers
                 return Unauthorized(ex.Message);
             }
         }
+        /// <summary>
+        /// Get Patient by id
+        /// </summary>
+        /// <param name="idPatient">int</param>
+        /// <returns>ActionResult</returns>
+        /// <response code="200">Return Patient</response>
+        /// <response code="404">Patient does not exist</response>
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(PatientModel))]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         [HttpGet("id/{idPatient}")]
         public async Task<ActionResult> GetPatientById([FromRoute] int idPatient)
         {
@@ -41,14 +71,29 @@ namespace ScheduleControl.src.controllers
             if (patient == null) return NotFound();
             return Ok(patient);
         }
+        /// <summary>
+        /// Get patient by Email
+        /// </summary>
+        /// <param name="emailPatient">string</param>
+        /// <returns>ActionResult</returns>
+        /// <response code="200">Return the Patient</response>
+        /// <response code="404">Email does not exist</response>
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(PatientModel))]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         [HttpGet("email/{emailPatient}")]
-        public async Task<ActionResult> GetPatientByEmail([FromRoute] string email)
+        public async Task<ActionResult> GetPatientByEmail([FromRoute] string emailPatient)
         {
-            var emailPatient = await _repository.GetPatientByEmailAsync(email);
+            var patientE = await _repository.GetPatientByEmailAsync(emailPatient);
 
-            if (emailPatient == null) return NotFound();
-            return Ok(emailPatient);
+            if (patientE == null) return NotFound();
+            return Ok(patientE);
         }
+        /// <summary>
+        /// Get all patients
+        /// </summary>
+        /// <returns>ActionResult</returns>
+        /// <response code="200">Patient list</response>
+        /// <response code="204">Empty list</response>
         [HttpGet]
         public async Task<ActionResult> GetAllDoctorsAsync()
         {
@@ -57,6 +102,12 @@ namespace ScheduleControl.src.controllers
             if(list.Count < 1) return NotFound();
             return Ok(list);
         }
+        /// <summary>
+        /// Delete patient by id
+        /// </summary>
+        /// <param name="idPatient">int</param>
+        /// <returns>ActionResult</returns>
+        /// <response code="204">Patient deleted</response>
         [HttpDelete("delete/{idPatient}")]
         public async Task<ActionResult> DeletePatientAsync(int idPatient)
         {
