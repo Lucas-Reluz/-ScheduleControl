@@ -20,10 +20,10 @@ namespace ScheduleControl.src.dtos
         public string Data { get; set; }
 
         [Required]
-        public string Doctor { get; set; }
+        public NewDoctorDTO Doctor { get; set; }
 
         [Required]
-        public string Patient { get; set; }
+        public NewPatientDTO Patient { get; set; }
 
         public NewQueryDTO(string reason, string hours,string data, string doctor, string patient)
         {
@@ -51,14 +51,12 @@ namespace ScheduleControl.src.dtos
         [StringLength(50)]
         public string Data { get; set; }
 
-        public string Doctor { get; set; }
 
         public UpdateQueryDTO(int id, string hours, string data, string doctor)
         {
             Id = id;
             Hours = hours;
             Data = data;
-            Doctor = doctor;
         }
     }
 }

@@ -26,7 +26,7 @@ namespace ScheduleControl.src.models
         [StringLength(150)]
         public string OccupationArea { get; set; }
 
-        [JsonIgnore]
+        [JsonIgnore, InverseProperty("Doctor")]
         public List<QueryModel> MyQueries { get; set; }
     }
 }

@@ -26,7 +26,7 @@ namespace ScheduleControl.src.models
         [StringLength(100)]
         public string Email { get; set; }
 
-        [JsonIgnore]
+        [JsonIgnore, InverseProperty("Patient")]
         public List<QueryModel> MyQueries { get; set; }
     }
 }
