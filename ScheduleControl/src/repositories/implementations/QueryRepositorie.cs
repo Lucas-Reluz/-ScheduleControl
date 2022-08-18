@@ -40,7 +40,10 @@ namespace ScheduleControl.src.repositories.implementations
         /// <return>List Query</return>
         public async Task<List<QueryModel>> GetAllQueriesAsync()
         {
-            return await _context.Queries.ToListAsync();
+            return await _context.Queries
+                .Include(q => q.Doctor)
+                .Include(q => q.Patient)
+                .ToListAsync();
         }
 
         public async Task<QueryModel> GetQueryByHours(string hours)
@@ -50,13 +53,16 @@ namespace ScheduleControl.src.repositories.implementations
 
         public async Task<QueryModel> GetQueryById(int id)
         {
-            return await _context.Queries.FirstOrDefaultAsync(q => q.Id == id); 
+            return await _context.Queries
+                .Include(q => q.Doctor)
+                .Include(q => q.Patient)
+                .FirstOrDefaultAsync(q => q.Id == id);
         }
 
         public async Task NewQueryAsync(NewQueryDTO query)
         {
             if (!ExistingQueryOfPatient(query.Patient.Name, query.Hours)) throw new Exception("This patient is already registered in this hour");
-            if (!ExistingQueryOfDoctor(query.Doctor.Name, query.Hours)) throw new Exception("This doctor is already registered");
+            if (!ExistingQueryOfDoctor(query.Doctor.Name, query.Hours)) throw new Exception("This doctor is already registered in this hour");
 
             await _context.Queries.AddAsync(new QueryModel
             {
@@ -73,7 +79,7 @@ namespace ScheduleControl.src.repositories.implementations
                 var response = _context.Queries
                      .Include(q => q.Patient.Name == name)
                      .Include(q => q.Hours == hours);
-                return response != null;
+                return (response != null);
             }
             bool ExistingQueryOfDoctor(string name, string hours)
             {

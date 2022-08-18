@@ -25,7 +25,7 @@ namespace ScheduleControl.src.dtos
         [Required]
         public NewPatientDTO Patient { get; set; }
 
-        public NewQueryDTO(string reason, string hours,string data, string doctor, string patient)
+        public NewQueryDTO(string reason, string hours,string data, NewDoctorDTO doctor, NewPatientDTO patient)
         {
             Reason = reason;
             Hours = hours;
