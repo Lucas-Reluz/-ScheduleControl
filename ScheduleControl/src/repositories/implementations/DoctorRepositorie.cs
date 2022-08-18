@@ -1,35 +1,60 @@
-﻿using ScheduleControl.src.dtos;
+﻿using Microsoft.EntityFrameworkCore;
+using ScheduleControl.src.data;
+using ScheduleControl.src.dtos;
 using ScheduleControl.src.models;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace ScheduleControl.src.repositories.implementations
 {
     public class DoctorRepositorie : IDoctor
     {
-        public Task DeleteDoctorAsync(string id)
+        #region Attributes
+        private readonly ScheduleControlContext _context;
+        #endregion
+
+        public DoctorRepositorie(ScheduleControlContext context)
         {
-            throw new System.NotImplementedException();
+            _context = context;
         }
 
-        public Task<List<DoctorModel>> GetAllDoctors()
+        public async Task DeleteDoctorAsync(int id)
         {
-            throw new System.NotImplementedException();
+            _context.Doctors.Remove(await GetDoctorByIdAsync(id));
+            await _context.SaveChangesAsync();
         }
 
-        public Task<DoctorModel> GetDoctorByOccupationAreaAsync(string occupationArea)
+        public async Task<List<DoctorModel>> GetAllDoctors()
         {
-            throw new System.NotImplementedException();
+            return await _context.Doctors.ToListAsync();
         }
 
-        public Task NewDoctorAsync(NewDoctorDTO dto)
+        public async Task<DoctorModel> GetDoctorByIdAsync(int id)
         {
-            throw new System.NotImplementedException();
+            return await _context.Doctors.FirstOrDefaultAsync(d => d.Id == id);
         }
 
-        public Task UpdateDoctorAsync(UpdateDoctorDTO dto)
+        public async Task<List<DoctorModel>> GetDoctorByOccupationAreaAsync(string occupationArea)
         {
-            throw new System.NotImplementedException();
+            return await _context.Doctors.Where(d => d.OccupationArea.Contains(occupationArea)).ToListAsync();
+        }
+
+        public async Task NewDoctorAsync(NewDoctorDTO doctor)
+        {
+            await _context.Doctors.AddAsync(new DoctorModel
+            {
+                Name = doctor.Name,
+                OccupationArea = doctor.OccupationArea,
+            });
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task UpdateDoctorAsync(UpdateDoctorDTO doctor)
+        {
+            var _doctor = await GetDoctorByIdAsync(doctor.Id);
+            _doctor.OccupationArea = doctor.OccupationArea;
+            await _context.SaveChangesAsync();
         }
     }
 }
