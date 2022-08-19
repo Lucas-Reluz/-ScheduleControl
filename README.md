@@ -20,7 +20,14 @@
   
   :heavy_check_mark: `Funcionalidade 5:` Registrar uma consulta nova.
   
-  :heavy_check_mark: `Funcionalidade 6:` Visualizar a lista de consultas e saber quais pacientes e medicos tem consultas em horários específicos. 
+  :heavy_check_mark: `Funcionalidade 6:` Visualizar a lista de consultas e saber quais pacientes e medicos tem consultas em horários específicos.
+  
+  ## Testes Unitários
+  <p> Os testes unitários consistem em: </p>
+  *Criação
+  *Procura por ID
+  *Procura por nome
+  *Procura por email
   
   ## Tabelas do Banco de Dados
   
