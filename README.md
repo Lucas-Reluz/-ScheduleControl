@@ -22,6 +22,8 @@
   
   :heavy_check_mark: `Funcionalidade 6:` Visualizar a lista de consultas e saber quais pacientes e medicos tem consultas em horários específicos.
   
+  Clique aqui para ver um vídeo de teste da API no swagger [Youtube](https://studio.youtube.com/video/yKGAlpAddZo/edit)
+  
   ## Testes Unitários
   <p> Os testes unitários consistem em: </p>
   
