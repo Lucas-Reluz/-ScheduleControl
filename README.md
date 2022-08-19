@@ -24,10 +24,11 @@
   
   ## Testes Unitários
   <p> Os testes unitários consistem em: </p>
-  *Criação
-  *Procura por ID
-  *Procura por nome
-  *Procura por email
+  
+  * Criação
+  * Procura por ID
+  * Procura por nome
+  * Procura por email
   
   ## Tabelas do Banco de Dados
   
