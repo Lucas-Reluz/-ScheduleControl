@@ -31,6 +31,7 @@
   * Procura por ID
   * Procura por nome
   * Procura por email
+   <img src="https://i.imgur.com/29zVcUy.jpg" alt="Testes unitários" >
   
   ## Tabelas do Banco de Dados
   
