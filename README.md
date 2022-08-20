@@ -25,7 +25,7 @@
   ## OBSERVAÇÕES
   
   **CONSULTATION TIME** é a quantidade de horas que o médico passa com seu paciente em consulta
-  <p>A parte dos horários se você cadastrar uma consulta onde o consultation time do doctor for 1, e o horário da consulta for 17:00 por exemplo, você não podera marcar consultas as 16:00 nem as 18:00, pois ainda vai contar como horario da consulta do doctor, assim terá que marcar as 15:59 ou as 17:01 e assim sucessivamente</p>
+  <p>A parte dos horários se você cadastrar uma consulta onde o consultation time do doctor for 1, e o horário da consulta for 17:00 por exemplo, você não podera marcar consultas as 16:00 nem as 18:00, pois ainda vai contar como horario da consulta do doctor, assim terá que marcar as 15:59 ou as 17:01 e assim sucessivamente, sempre 1 minuto antes ou depois</p>
   
   Clique aqui para ver um vídeo de teste da API no swagger [Youtube](https://studio.youtube.com/video/yKGAlpAddZo/edit)
   
