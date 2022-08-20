@@ -24,7 +24,7 @@
   
   Clique aqui para ver um vídeo de teste da API no swagger [Youtube](https://studio.youtube.com/video/yKGAlpAddZo/edit)
   
-  ## Testes Unitários
+  ## Testes Unitários(Podem ser encontrados no ScheduleControlTest)
   <p> Os testes unitários consistem em: </p>
   
   * Criação
@@ -39,7 +39,7 @@
   
   * Pacientes 
   * Medicos
-  * Sistema de Agendamentos de Consulta
+  * Agendamentos de Consulta
   
   ## Ferramentas utilizadas
   
@@ -52,6 +52,6 @@
   - ``Heroku (Deploy)``
   
   ## Autor
-  
+    
    <img src="https://i.imgur.com/2dT2j1U.jpg" alt="Logo" whith="100" height="100"> | <p>Contate-me👇</p> <a href="https://www.linkedin.com/in/lucas-reluz-493549220/" target="_blank"><img src="https://img.shields.io/badge/-LinkedIn-%230077B5?style=for-the-badge&logo=linkedin&logoColor=white" target="_blank"></a>
-   | :---: | :---: 
+   | :---: | :---:
