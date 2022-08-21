@@ -22,6 +22,33 @@
   
   :heavy_check_mark: `Funcionalidade 6:` Visualizar a lista de consultas e saber quais pacientes e medicos tem consultas em horários específicos.
   
+  ## EXPLICANDO AS REQUISIÇÕES
+  
+  <p>APPOINTMENT</p>
+  
+  - ``Create New Appointment - Cria uma nova consulta a partir dos médicos e pacientes cadastrados``
+  - ``Delete Appointment By Id - Deleta uma consulta pelo ID``
+  - ``Get Appointment By Id - Pega uma Consulta pelo ID``
+  - ``Get All Appointments - Pega todas as consultas e consegue ver as consultas marcadas de medicos e pacientes``
+  - ``Update Appointment - Consegue Atualizar a data/hora da consulta e também o Doutor``
+  
+  <p>DOCTOR</p>
+  
+  - ``Create New Doctor - Cria um novo médico``
+  - ``Get All Doctors - Pega todos os médicos cadastrados``
+  - ``Update Doctor - Te possibilita atualizar a area de atuação do médico``
+  - ``Get Doctor By Id - Pega um médico pelo ID``
+  - ``Get Doctor By OccupationArea - Pega um médico pela area de ocupação``
+  - ``Delete Doctor By Id - Deleta um médico pelo ID``
+  
+  <p>PATIENT</p>
+  
+  - ``Create New Patient - Cria um novo paciente``
+  - ``Get Patient By Id - Pega um paciente pelo ID``
+  - ``Get Patient By Email - Pega o paciente pelo email``
+  - ``Get All Patients - Pega todos os pacientes cadastrados``
+  - ``Delete Patient By Id - Deleta um paciente pelo ID``
+  
   ## OBSERVAÇÕES
   
   **CONSULTATION TIME** é a quantidade de horas que o médico passa com seu paciente em consulta
