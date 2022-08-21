@@ -142,8 +142,15 @@ namespace ScheduleControl.src.controllers
         [HttpDelete("delete/{idDoctor}")]
         public async Task<ActionResult> DeleteDoctorAsync([FromRoute] int idDoctor)
         {
-            await _repository.DeleteDoctorAsync(idDoctor);
-            return NoContent();
+            try
+            {
+                await _repository.DeleteDoctorAsync(idDoctor);
+                return NoContent();
+            }
+            catch (Exception)
+            {
+                return BadRequest("This doctor is in consultation or not exist, delete the consultation to delete the doctor");
+            }
         }
     }
 }

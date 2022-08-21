@@ -22,7 +22,7 @@ namespace ScheduleControlTest.test.repositories
         private IPatient _repositoryP;
 
         [TestMethod]
-        public async Task CreateTwoQueriesInDatabaseReturnTwoQueries()
+        public async Task CreateTwoAppointmentsInDatabaseReturnTwoAppointments()
         {
             var opt = new DbContextOptionsBuilder<ScheduleControlContext>()
                 .UseInMemoryDatabase(databaseName: "db_schedulecontrol1")
@@ -37,7 +37,7 @@ namespace ScheduleControlTest.test.repositories
                "Dor no ombro",
                DateTime.Now,
                new NewDoctorDTO(
-                   "Cleiton Moreno",
+                   "Cleiton Benici",
                    "Pediatria",
                    1
                    ),
@@ -46,10 +46,24 @@ namespace ScheduleControlTest.test.repositories
                    "augusto@email.com"
                    )
                ));
-            Assert.AreEqual(1, _context.Appointments.Count());
+            await _repository.NewAppointmentAsync(
+       new NewAppointmentDTO(
+           "Muito cansaço",
+           DateTime.Now,
+           new NewDoctorDTO(
+               "Felipe Lopes",
+               "Medico Geral",
+               1
+               ),
+           new NewPatientDTO(
+               "Josuel Perini",
+               "josuel@email.com"
+               )
+           ));
+            Assert.AreEqual(2, _context.Appointments.Count());
         }
         [TestMethod]
-        public async Task GetQueryByIdReturnNotNull()
+        public async Task GetAppointmentByIdReturnNotNull()
         {
             var opt = new DbContextOptionsBuilder<ScheduleControlContext>()
              .UseInMemoryDatabase(databaseName: "db_schedulecontrol2")
@@ -59,11 +73,25 @@ namespace ScheduleControlTest.test.repositories
             _repositoryD = new DoctorRepositorie(_context);
             _repositoryP = new PatientRepositorie(_context);
 
+            await _repository.NewAppointmentAsync(
+     new NewAppointmentDTO(
+         "Dor no ombro",
+         DateTime.Now,
+         new NewDoctorDTO(
+             "Cleiton Moreno",
+             "Pediatria",
+             1
+             ),
+         new NewPatientDTO(
+             "Augusto Braga",
+             "augusto@email.com"
+             )
+         ));
             var query = await _repository.GetAppointmentByIdAsync(1);
             Assert.IsNotNull(query);
         }
         [TestMethod]
-        public async Task GetQueryByIdReturnPatientName()
+        public async Task GetAppointmentByIdReturnNotEqualReason()
         {
             var opt = new DbContextOptionsBuilder<ScheduleControlContext>()
             .UseInMemoryDatabase(databaseName: "db_schedulecontrol3")
@@ -75,20 +103,21 @@ namespace ScheduleControlTest.test.repositories
 
             await _repository.NewAppointmentAsync(
             new NewAppointmentDTO(
-                "Dor no ombro",
+                "Pé quebrado",
                 DateTime.Now,
                 new NewDoctorDTO(
-                    "Cleiton Moreno",
+                    "Miguel Moreno",
                     "Pediatria",
                     1
                     ),
                 new NewPatientDTO(
                     "Leandro Pereira",
-                    "augusto@email.com"
+                    "leandro@email.com"
                     )
                 ));
+
             var query = await _repository.GetAppointmentByIdAsync(1);
-            Assert.AreEqual("Leandro Pereira", query.Patient.Name);
+            Assert.AreNotEqual("Dor de garganta", query.Reason);
         }
         [TestMethod]
         public async Task GetQueryByIdReturnReason()
@@ -116,7 +145,7 @@ namespace ScheduleControlTest.test.repositories
                         )
                     ));
             var query = await _repository.GetAppointmentByIdAsync(1);
-            Assert.AreEqual("Dor no Ombro", query.Reason);
+            Assert.AreEqual("Dor no ombro", query.Reason);
         }
     }
 }

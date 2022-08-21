@@ -1,9 +1,11 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using ScheduleControl.src.data;
 using ScheduleControl.src.dtos;
 using ScheduleControl.src.models;
 using ScheduleControl.src.repositories;
 using System;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace ScheduleControl.src.controllers
@@ -15,11 +17,13 @@ namespace ScheduleControl.src.controllers
     {
         #region Attributes
         private readonly IAppointment _repository;
+        private readonly ScheduleControlContext _context;
         #endregion
 
-        public AppointmentController(IAppointment query)
+        public AppointmentController(IAppointment query, ScheduleControlContext context)
         {
             _repository = query;
+            _context = context;
         }
         /// <summary>
         /// Create New Appointment
@@ -39,7 +43,7 @@ namespace ScheduleControl.src.controllers
         ///             "consultationTime": 1
         ///        },
         ///        "patient":{
-        ///        "name": "Marcelo"
+        ///        "name": "Marcelo",
         ///        "email": "marcelo@email.com"
         ///        }
         ///     }
@@ -52,16 +56,42 @@ namespace ScheduleControl.src.controllers
         [HttpPost("Register")]
         public async Task<ActionResult> NewAppointmentAsync([FromBody] NewAppointmentDTO appointment)
         {
-            if(!ModelState.IsValid) return BadRequest(ModelState);
+            if (!ModelState.IsValid) return BadRequest(ModelState);
 
             try
             {
+                if (IsDateDoctorValid(appointment.Data, appointment.Doctor.Name)) throw new Exception("This doctor already has an appointment now");
+                if (IsDatePatientValid(appointment.Data, appointment.Patient.Name)) throw new Exception("This patient already has an appointment now");
                 await _repository.NewAppointmentAsync(appointment);
-                return Created($"api/Query", appointment);
+                return Created($"api/Appointment", appointment);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 return Unauthorized(ex.Message);
+            }
+            bool IsDateDoctorValid(DateTime date, string nameDoctor)
+            {
+                var doctor = _context.Doctors.FirstOrDefault(d => d.Name == appointment.Doctor.Name);
+                var startDate = date.AddHours(-doctor.ConsultationTime);
+                var endDate = date.AddHours(doctor.ConsultationTime);
+
+                var dateExist = _context.Appointments
+                    .Where(q => (q.Data >= startDate && q.Data <= endDate && q.Doctor.Name == nameDoctor))
+                    .ToList();
+
+                return dateExist.Count > 0;
+            }
+            bool IsDatePatientValid(DateTime date, string namePatient)
+            {
+                var doctor = _context.Doctors.FirstOrDefault(d => d.Name == appointment.Doctor.Name);
+                var startDate = date.AddHours(-doctor.ConsultationTime);
+                var endDate = date.AddHours(doctor.ConsultationTime);
+
+                var dateExist = _context.Appointments
+                    .Where(q => (q.Data >= startDate && q.Data <= endDate && q.Patient.Name == namePatient))
+                    .ToList();
+
+                return dateExist.Count > 0;
             }
         }
         /// <summary>
@@ -135,10 +165,29 @@ namespace ScheduleControl.src.controllers
         public async Task<ActionResult> UpdateAppointmentAsync([FromBody] UpdateAppointmentDTO appointment)
         {
             if (!ModelState.IsValid) return BadRequest();
+            try
+            {
+                if (IsDateDoctorValid(appointment.Data, appointment.Doctor.Name)) throw new Exception("This doctor already has an appointment now");              
+                await _repository.UpdateAppointmentAsync(appointment);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return Unauthorized(ex.Message);
+            }
+            //Aux functions
+            bool IsDateDoctorValid(DateTime date, string nameDoctor)
+            {
+                var doctor = _context.Doctors.FirstOrDefault(d => d.Name == appointment.Doctor.Name);
+                var startDate = date.AddHours(-doctor.ConsultationTime);
+                var endDate = date.AddHours(doctor.ConsultationTime);
 
-            await _repository.UpdateAppointmentAsync(appointment);
+                var dateExist = _context.Appointments
+                    .Where(q => (q.Data >= startDate && q.Data <= endDate && q.Doctor.Name == nameDoctor))
+                    .ToList();
 
-            return Ok(appointment);
+                return dateExist.Count > 0;
+            }
         }
     }
 }

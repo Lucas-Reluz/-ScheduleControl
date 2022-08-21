@@ -64,9 +64,6 @@ namespace ScheduleControl.src.repositories.implementations
         /// <param name="appointment">NewQueryDTO</param>
         public async Task NewAppointmentAsync(NewAppointmentDTO appointment)
         {
-            if (IsDateDoctorValid(appointment.Data, appointment.Doctor.Name)) throw new Exception("This doctor already has an appointment now");
-            if (IsDatePatientValid(appointment.Data, appointment.Patient.Name)) throw new Exception("This patient already has an appointment now");
-
             await _context.Appointments.AddAsync(new AppointmentModel
             {
                   Reason = appointment.Reason,
@@ -75,33 +72,6 @@ namespace ScheduleControl.src.repositories.implementations
                   Patient = _context.Patients.FirstOrDefault(p => p.Name == appointment.Patient.Name),
             });
             await _context.SaveChangesAsync();
-
-
-            //Aux functions
-            bool IsDateDoctorValid(DateTime date, string nameDoctor)
-            {
-                var doctor = _context.Doctors.FirstOrDefault(d => d.Name == appointment.Doctor.Name);
-                var startDate = date.AddHours(- doctor.ConsultationTime);
-                var endDate = date.AddHours(doctor.ConsultationTime);
-
-                var dateExist = _context.Appointments
-                    .Where(q => (q.Data >= startDate && q.Data <= endDate && q.Doctor.Name == nameDoctor))
-                    .ToList();
-
-                return dateExist.Count > 0;
-            }
-            bool IsDatePatientValid(DateTime date, string namePatient)
-            {
-                var doctor = _context.Doctors.FirstOrDefault(d => d.Name == appointment.Doctor.Name);
-                var startDate = date.AddHours(-doctor.ConsultationTime);
-                var endDate = date.AddHours(doctor.ConsultationTime);
-
-                var dateExist = _context.Appointments
-                    .Where(q => (q.Data >= startDate && q.Data <= endDate && q.Patient.Name == namePatient))
-                    .ToList();
-
-                return dateExist.Count > 0;
-            }
         }
 
         /// <summary>
@@ -110,24 +80,10 @@ namespace ScheduleControl.src.repositories.implementations
         /// <param name="appointment">UpdateAppointmentDTO</param>
         public async Task UpdateAppointmentAsync(UpdateAppointmentDTO appointment)
         {
-            if (IsDateDoctorValid(appointment.Data, appointment.Doctor.Name)) throw new Exception("This doctor already has an appointment now");
-
             var _query = await GetAppointmentByIdAsync(appointment.Id);
             _query.Data = appointment.Data;
-
-            //Aux functions
-            bool IsDateDoctorValid(DateTime date, string nameDoctor)
-            {
-                var doctor = _context.Doctors.FirstOrDefault(d => d.Name == appointment.Doctor.Name);
-                var startDate = date.AddHours(-doctor.ConsultationTime);
-                var endDate = date.AddHours(doctor.ConsultationTime);
-
-                var dateExist = _context.Appointments
-                    .Where(q => (q.Data >= startDate && q.Data <= endDate && q.Doctor.Name == nameDoctor))
-                    .ToList();
-
-                return dateExist.Count > 0;
-            }
+            _query.Doctor = _context.Doctors.FirstOrDefault(d => d.Name == appointment.Doctor.Name);
+            await _context.SaveChangesAsync();
         }
     }
 }

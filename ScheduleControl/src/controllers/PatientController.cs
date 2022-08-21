@@ -1,9 +1,11 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using ScheduleControl.src.data;
 using ScheduleControl.src.dtos;
 using ScheduleControl.src.models;
 using ScheduleControl.src.repositories;
 using System;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace ScheduleControl.src.controllers
@@ -108,11 +110,19 @@ namespace ScheduleControl.src.controllers
         /// <param name="idPatient">int</param>
         /// <returns>ActionResult</returns>
         /// <response code="204">Patient deleted</response>
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
         [HttpDelete("delete/{idPatient}")]
         public async Task<ActionResult> DeletePatientAsync(int idPatient)
         {
-            await _repository.DeletePatientAsync(idPatient);
-            return NoContent();
+            try
+            {
+                await _repository.DeletePatientAsync(idPatient);
+                return NoContent();
+            }
+            catch(Exception)
+            {
+                return BadRequest("This patient is in consultation or not exist, delete the consultation to delete the patient");
+            }
         }
     }
 }
