@@ -67,27 +67,27 @@ namespace ScheduleControl
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ScheduleControlContext contexto)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ScheduleControlContext context)
         {
             // Development environment
             if (env.IsDevelopment())
             {
-                contexto.Database.EnsureCreated();
+                context.Database.EnsureCreated();
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
                 app.UseSwaggerUI(c =>
                 {
-                    c.SwaggerEndpoint("/swagger/v1/swagger.json", "ControleMedicamentos v1");
+                    c.SwaggerEndpoint("/swagger/v1/swagger.json", "ScheduleControl v1");
                     c.RoutePrefix = string.Empty;
                 });
             }
             // Production Environment
-            contexto.Database.EnsureCreated();
+            context.Database.EnsureCreated();
             app.UseDeveloperExceptionPage();
             app.UseSwagger();
             app.UseSwaggerUI(c =>
             {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "ControleMedicamentos v1");
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "ScheduleControl v1");
                 c.RoutePrefix = string.Empty;
             });
 
