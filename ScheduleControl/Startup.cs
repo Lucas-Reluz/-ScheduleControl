@@ -48,7 +48,7 @@ namespace ScheduleControl
             // Repositories
             services.AddScoped<IPatient, PatientRepositorie>();
             services.AddScoped<IDoctor, DoctorRepositorie>();
-            services.AddScoped<IQuery, QueryRepositorie>();
+            services.AddScoped<IAppointment, AppointmentRepositorie>();
 
             //Controllers
             services.AddCors();

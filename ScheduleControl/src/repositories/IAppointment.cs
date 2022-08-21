@@ -11,15 +11,13 @@ namespace ScheduleControl.src.repositories
     /// <para>Version: 1.0</para>
     /// <para>Data: 17/08/2022</para>
     /// </summary>
-    public interface IQuery
+    public interface IAppointment
     {
-        Task NewQueryAsync(NewQueryDTO query);
-        Task UpdateQueryAsync(UpdateQueryDTO query);
-        Task<QueryModel> GetQueryById(int id);
-
-        Task<QueryModel> GetQueryByHours(string hours);
-        Task DeleteQueryAsync(int id);
-        Task<List<QueryModel>> GetAllQueriesAsync();
+        Task NewAppointmentAsync(NewAppointmentDTO appointment);
+        Task UpdateAppointmentAsync(UpdateAppointmentDTO appointment);
+        Task<AppointmentModel> GetAppointmentByIdAsync(int id);
+        Task DeleteAppointmentAsync(int id);
+        Task<List<AppointmentModel>> GetAllAppointmentsAsync();
 
     }
 }

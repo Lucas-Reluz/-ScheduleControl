@@ -69,6 +69,7 @@ namespace ScheduleControl.src.repositories.implementations
             {
                 Name = doctor.Name,
                 OccupationArea = doctor.OccupationArea,
+                ConsultationTime = doctor.ConsultationTime
             });
             await _context.SaveChangesAsync();
         }

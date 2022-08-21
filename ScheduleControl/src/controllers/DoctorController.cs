@@ -33,7 +33,8 @@ namespace ScheduleControl.src.controllers
         ///     POST /api/Doctor
         ///     {
         ///        "name": "Cleiton Benicio",
-        ///        "occupationArea": "Pediatria"
+        ///        "occupationArea": "Pediatria",
+        ///        "consultationTime": 1
         ///     }
         ///
         /// </remarks>

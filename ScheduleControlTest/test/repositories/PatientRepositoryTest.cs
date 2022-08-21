@@ -22,7 +22,7 @@ namespace ScheduleControlTest.test.repositories
         public async Task CreateFourPatientsInDatabaseReturnFourPatients()
         {
             var opt = new DbContextOptionsBuilder<ScheduleControlContext>()
-                .UseInMemoryDatabase(databaseName: "db_schedulecontrol")
+                .UseInMemoryDatabase(databaseName: "db_schedulecontrol1")
                 .Options;
                 _context = new ScheduleControlContext(opt);
             _repository = new PatientRepositorie(_context);
@@ -55,7 +55,7 @@ namespace ScheduleControlTest.test.repositories
         public async Task GetPatientByEmailReturnNotNull()
         {
             var opt = new DbContextOptionsBuilder<ScheduleControlContext>()
-                .UseInMemoryDatabase(databaseName: "db_schedulecontrol")
+                .UseInMemoryDatabase(databaseName: "db_schedulecontrol2")
                 .Options;
             _context = new ScheduleControlContext(opt);
             _repository = new PatientRepositorie(_context);
@@ -75,7 +75,7 @@ namespace ScheduleControlTest.test.repositories
         public async Task GetPatientByIdReturnNotNull()
         {
             var opt = new DbContextOptionsBuilder<ScheduleControlContext>()
-                .UseInMemoryDatabase(databaseName: "db_schedulecontrol")
+                .UseInMemoryDatabase(databaseName: "db_schedulecontrol3")
                 .Options;
             _context = new ScheduleControlContext(opt);
             _repository = new PatientRepositorie(_context);
@@ -87,10 +87,10 @@ namespace ScheduleControlTest.test.repositories
                     "pele@email.com"
                     ));
 
-            var patientU = _repository.GetPatientByIdAsync(1);
+            var patient = await _repository.GetPatientByIdAsync(1);
             
-            Assert.IsNotNull(patientU);
-            Assert.AreEqual("Pele Roberto", patientU);
+            Assert.IsNotNull(patient);
+            Assert.AreEqual("Pele Roberto", patient.Name);
         }
     }
 }

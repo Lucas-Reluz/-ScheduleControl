@@ -15,11 +15,13 @@ namespace ScheduleControl.src.dtos
 
         [Required, StringLength(100)]
         public string OccupationArea { get; set; }
+        public int ConsultationTime { get; set; }
 
-        public NewDoctorDTO(string name, string occupationArea)
+        public NewDoctorDTO(string name, string occupationArea, int consultationTime)
         {
             Name = name;
             OccupationArea = occupationArea;
+            ConsultationTime = consultationTime;
         }
     }
 

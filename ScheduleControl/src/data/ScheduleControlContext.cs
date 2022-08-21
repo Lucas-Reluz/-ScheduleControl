@@ -13,7 +13,7 @@ namespace ScheduleControl.src.data
     {
         public DbSet<DoctorModel> Doctors { get; set; }
         public DbSet<PatientModel> Patients { get; set; }
-        public DbSet<QueryModel> Queries { get; set; }
+        public DbSet<AppointmentModel> Appointments { get; set; }
 
         public ScheduleControlContext(DbContextOptions<ScheduleControlContext> opt) : base(opt)
         {

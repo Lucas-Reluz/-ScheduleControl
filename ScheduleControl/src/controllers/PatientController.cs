@@ -95,7 +95,7 @@ namespace ScheduleControl.src.controllers
         /// <response code="200">Patient list</response>
         /// <response code="204">Empty list</response>
         [HttpGet]
-        public async Task<ActionResult> GetAllDoctorsAsync()
+        public async Task<ActionResult> GetAllPatientsAsync()
         {
             var list = await _repository.GetAllPatientsAsync();
 

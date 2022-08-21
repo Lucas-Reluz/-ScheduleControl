@@ -25,8 +25,10 @@ namespace ScheduleControl.src.models
         [Required]
         [StringLength(150)]
         public string OccupationArea { get; set; }
+
+        public int ConsultationTime { get; set; }
         
         [JsonIgnore]
-        public List<QueryModel> MyQueries { get; set; }
+        public List<AppointmentModel> MyQueries { get; set; }
     }
 }
