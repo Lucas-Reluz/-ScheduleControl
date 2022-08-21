@@ -2,7 +2,7 @@
   <img src="https://i.imgur.com/qMSek4h.png" alt="Logo" >
   <br/>
 
-![Badge em Desenvolvimento](http://img.shields.io/static/v1?label=STATUS&message=EM%20DESENVOLVIMENTO&color=GREEN&style=for-the-badge)
+Clique aqui para acessar! -> [Schedule Control Swagger](https://schedulecontrollucas.herokuapp.com/index.html)
 
 ## SOBRE A API
 
