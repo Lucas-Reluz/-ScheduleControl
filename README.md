@@ -32,7 +32,7 @@ Clique aqui para acessar a API hospedada [Schedule Control](https://schedulecont
   - ``Delete Appointment By Id - Deleta uma consulta pelo ID``
   - ``Get Appointment By Id - Pega uma Consulta pelo ID``
   - ``Get All Appointments - Pega todas as consultas e consegue ver as consultas marcadas de medicos e pacientes``
-  - ``Update Appointment - Consegue Atualizar a data/hora da consulta e também o Doutor``
+  - ``Update Appointment - Consegue Atualizar a data/hora da consulta e também o médico``
   
   <p>DOCTOR</p>
   
