@@ -57,8 +57,6 @@ Clique aqui para acessar a API hospedada [Schedule Control](https://schedulecont
   <p>A parte dos horários se você cadastrar uma consulta onde o consultation time do doctor for 1, e o horário da consulta for 17:00 por exemplo, você não podera marcar consultas as 16:00 nem as 18:00, pois ainda vai contar como horario da consulta do doctor, assim terá que marcar as 15:59 ou as 17:01 e assim sucessivamente, sempre 1 minuto antes ou depois</p>
   <p>Você só pode deletar um paciente ou médico que não estejam com consulta marcada! Caso tente deletar um paciente ou médico com consulta não será possível e ira aparecer um erro documentado para ti</p>
   
-  Clique aqui para ver um vídeo de teste da API no swagger [Youtube](https://studio.youtube.com/video/yKGAlpAddZo/edit)
-  
   ## TESTES UNITÁRIOS(Podem ser encontrados no ScheduleControlTest)
   <p> Os testes unitários consistem em: </p>
   
