@@ -118,8 +118,12 @@ namespace ScheduleControl.src.controllers
         ///     PUT /api/Appointment
         ///     {
         ///        "id": 1,    
-        ///        "hours": "14:30",
-        ///        "data": "19/11/2022"
+        ///        "data": "2022-08-21T18:54:34.491Z",
+        ///        "doctor": {
+        ///          "name": "string",
+        ///          "occupationArea": "string",
+        ///          "consultationTime": 0
+        ///          }
         ///     }
         ///
         /// </remarks>
