@@ -63,7 +63,7 @@ Clique aqui para acessar! -> [Schedule Control Swagger](https://schedulecontroll
   * Procura por ID
   * Procura por nome
   * Procura por email
-   <img src="https://i.imgur.com/29zVcUy.jpg" alt="Testes unitários" >
+   <img src="https://i.imgur.com/o8TM5kR.png" alt="Testes unitários" >
   
   ## TABELAS DO BANCO DE DADOS
   
