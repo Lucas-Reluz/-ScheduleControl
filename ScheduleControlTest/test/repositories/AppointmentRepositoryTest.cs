@@ -78,13 +78,13 @@ namespace ScheduleControlTest.test.repositories
          "Dor no ombro",
          DateTime.Now,
          new NewDoctorDTO(
-             "Cleiton Moreno",
-             "Pediatria",
+             "Yago Dias",
+             "Medico Geral",
              1
              ),
          new NewPatientDTO(
-             "Augusto Braga",
-             "augusto@email.com"
+             "Euclides Lopes",
+             "euclides@email.com"
              )
          ));
             var query = await _repository.GetAppointmentByIdAsync(1);
@@ -107,7 +107,7 @@ namespace ScheduleControlTest.test.repositories
                 DateTime.Now,
                 new NewDoctorDTO(
                     "Miguel Moreno",
-                    "Pediatria",
+                    "Cirurgião",
                     1
                     ),
                 new NewPatientDTO(
@@ -135,13 +135,13 @@ namespace ScheduleControlTest.test.repositories
                     "Dor no ombro",
                     DateTime.Now,
                     new NewDoctorDTO(
-                        "Cleiton Moreno",
-                        "Pediatria",
+                        "Lucas Bernardo",
+                        "Fisioterapeuta",
                         1
                         ),
                     new NewPatientDTO(
-                        "Augusto Braga",
-                        "augusto@email.com"
+                        "Oscar Filho",
+                        "oscar@email.com"
                         )
                     ));
             var query = await _repository.GetAppointmentByIdAsync(1);
