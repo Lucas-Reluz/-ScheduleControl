@@ -2,7 +2,9 @@
   <img src="https://i.imgur.com/qMSek4h.png" alt="Logo" >
   <br/>
 
-Clique aqui para acessar! -> [Schedule Control Swagger](https://schedulecontrollucas.herokuapp.com/index.html)
+Clique aqui para ver um vídeo testando a API no youtube https://www.youtube.com/watch?v=oVSCQm9zYpM
+
+Clique aqui para acessar a API hospedada [Schedule Control](https://schedulecontrollucas.herokuapp.com/index.html)
 
 ## SOBRE A API
 
@@ -30,7 +32,7 @@ Clique aqui para acessar! -> [Schedule Control Swagger](https://schedulecontroll
   - ``Delete Appointment By Id - Deleta uma consulta pelo ID``
   - ``Get Appointment By Id - Pega uma Consulta pelo ID``
   - ``Get All Appointments - Pega todas as consultas e consegue ver as consultas marcadas de medicos e pacientes``
-  - ``Update Appointment - Consegue Atualizar a data/hora da consulta e também o Doutor``
+  - ``Update Appointment - Consegue Atualizar a data/hora da consulta e também o médico``
   
   <p>DOCTOR</p>
   
@@ -53,8 +55,7 @@ Clique aqui para acessar! -> [Schedule Control Swagger](https://schedulecontroll
   
   **CONSULTATION TIME** é a quantidade de horas que o médico passa com seu paciente em consulta
   <p>A parte dos horários se você cadastrar uma consulta onde o consultation time do doctor for 1, e o horário da consulta for 17:00 por exemplo, você não podera marcar consultas as 16:00 nem as 18:00, pois ainda vai contar como horario da consulta do doctor, assim terá que marcar as 15:59 ou as 17:01 e assim sucessivamente, sempre 1 minuto antes ou depois</p>
-  
-  Clique aqui para ver um vídeo de teste da API no swagger [Youtube](https://studio.youtube.com/video/yKGAlpAddZo/edit)
+  <p>Você só pode deletar um paciente ou médico que não estejam com consulta marcada! Caso tente deletar um paciente ou médico com consulta não será possível e ira aparecer um erro documentado para ti</p>
   
   ## TESTES UNITÁRIOS(Podem ser encontrados no ScheduleControlTest)
   <p> Os testes unitários consistem em: </p>
@@ -71,7 +72,7 @@ Clique aqui para acessar! -> [Schedule Control Swagger](https://schedulecontroll
   
   * Pacientes 
   * Medicos
-  * Agendamentos de Consulta
+  * Agendamentos de Consultas
   
   ## FERRAMENTAS UTILIZADAS
   
