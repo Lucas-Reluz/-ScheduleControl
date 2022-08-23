@@ -60,8 +60,8 @@ namespace ScheduleControl.src.controllers
 
             try
             {
-                if (IsDateDoctorValid(appointment.Data, appointment.Doctor.Name)) throw new Exception("This doctor already has an appointment now");
-                if (IsDatePatientValid(appointment.Data, appointment.Patient.Name)) throw new Exception("This patient already has an appointment now");
+                if (IsDateDoctorBusy(appointment.Data, appointment.Doctor.Name)) throw new Exception("This doctor already has an appointment now");
+                if (IsDatePatientBusy(appointment.Data, appointment.Patient.Name)) throw new Exception("This patient already has an appointment now");
                 await _repository.NewAppointmentAsync(appointment);
                 return Created($"api/Appointment", appointment);
             }
@@ -69,7 +69,7 @@ namespace ScheduleControl.src.controllers
             {
                 return Unauthorized(ex.Message);
             }
-            bool IsDateDoctorValid(DateTime date, string nameDoctor)
+            bool IsDateDoctorBusy(DateTime date, string nameDoctor)
             {
                 var doctor = _context.Doctors.FirstOrDefault(d => d.Name == appointment.Doctor.Name);
                 var startDate = date.AddHours(-doctor.ConsultationTime);
@@ -81,7 +81,7 @@ namespace ScheduleControl.src.controllers
 
                 return dateExist.Count > 0;
             }
-            bool IsDatePatientValid(DateTime date, string namePatient)
+            bool IsDatePatientBusy(DateTime date, string namePatient)
             {
                 var doctor = _context.Doctors.FirstOrDefault(d => d.Name == appointment.Doctor.Name);
                 var startDate = date.AddHours(-doctor.ConsultationTime);

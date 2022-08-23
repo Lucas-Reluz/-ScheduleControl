@@ -39,7 +39,7 @@ namespace ScheduleControl.src.repositories.implementations
         /// <return>List Query</return>
         public async Task<List<PatientModel>> GetAllPatientsAsync()
         {
-            return await _context.Patients.Include(p => p.MyQueries).ToListAsync();
+            return await _context.Patients.Include(p => p.MyAppointments).ToListAsync();
         }
         /// <summary>
         /// <para>Resumo: Asynchronous method to get a patient for email</para>

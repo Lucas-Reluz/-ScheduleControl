@@ -29,6 +29,6 @@ namespace ScheduleControl.src.models
         public int ConsultationTime { get; set; }
         
         [JsonIgnore]
-        public List<AppointmentModel> MyQueries { get; set; }
+        public List<AppointmentModel> MyAppointments { get; set; }
     }
 }

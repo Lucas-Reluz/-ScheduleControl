@@ -50,6 +50,12 @@ namespace ScheduleControl.src.repositories.implementations
         {
             return await _context.Doctors.FirstOrDefaultAsync(d => d.Id == id);
         }
+
+        public async Task<DoctorModel> GetDoctorByNameAsync(string name)
+        {
+            return await _context.Doctors.FirstOrDefaultAsync(d => d.Name == name);
+        }
+
         /// <summary>
         /// <para>Resumo: Asynchronous method to get a doctor by occupation area</para>
         /// </summary>
@@ -65,6 +71,8 @@ namespace ScheduleControl.src.repositories.implementations
         /// <param name="doctor">NewQueryDTO</param>
         public async Task NewDoctorAsync(NewDoctorDTO doctor)
         {
+            var doctorRegistered = await GetDoctorByNameAsync(doctor.Name);
+            if (doctorRegistered != null) throw new System.Exception("This doctor already registered");
             await _context.Doctors.AddAsync(new DoctorModel
             {
                 Name = doctor.Name,

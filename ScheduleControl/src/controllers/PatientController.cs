@@ -85,10 +85,10 @@ namespace ScheduleControl.src.controllers
         [HttpGet("email/{emailPatient}")]
         public async Task<ActionResult> GetPatientByEmail([FromRoute] string emailPatient)
         {
-            var patientE = await _repository.GetPatientByEmailAsync(emailPatient);
+            var patientByEmail = await _repository.GetPatientByEmailAsync(emailPatient);
 
-            if (patientE == null) return NotFound();
-            return Ok(patientE);
+            if (patientByEmail == null) return NotFound();
+            return Ok(patientByEmail);
         }
         /// <summary>
         /// Get all patients

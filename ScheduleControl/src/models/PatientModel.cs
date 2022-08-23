@@ -26,6 +26,6 @@ namespace ScheduleControl.src.models
         [StringLength(100)]
         public string Email { get; set; }
         [JsonIgnore]
-        public List<AppointmentModel> MyQueries { get; set; }
+        public List<AppointmentModel> MyAppointments { get; set; }
     }
 }
